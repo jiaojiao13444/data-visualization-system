@@ -24,4 +24,24 @@
 ### 前端
 - 使用vue2及vue脚手架搭建，使用Echarts绘制图表
 - 组件结构：六个图表组件都是HomePage组件的子组件，切换全屏时没有路由跳转，而是直接修改css样式使其全屏展示并覆盖其他组件
-- 皮肤主题切换：利用vuex保存主题状态，所有组件监视主题状态的变化
+- 皮肤主题切换：使用echarts的两套主题vintage（明亮）和chalk（黑暗），利用vuex保存主题状态，所有组件监视主题状态的变化(watch)，一旦变化就重新渲染，而使用原生html写的部分则使用computed监视主题变化并改变样式
+```js
+export default new Vuex.Store({
+  state: {
+    theme: 'vintage'
+  },
+  mutations: {
+    changeTheme (state) {
+      if (state.theme === 'chalk') {
+        state.theme = 'vintage'
+      } else {
+        state.theme = 'chalk'
+      }
+    }
+  },
+  actions: {
+  },
+  modules: {
+  }
+})
+```
